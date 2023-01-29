@@ -8,6 +8,7 @@ import { BehaviorSubject, map } from 'rxjs';
 })
 export class AccountService {
   baseUrl = 'https://localhost:5001/api/';
+
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
   constructor(private http: HttpClient) {}
@@ -23,7 +24,7 @@ export class AccountService {
       })
     );
   }
-
+  //fetch data from the db with the model any type user + end point
   register(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map((user) => {
