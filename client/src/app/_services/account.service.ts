@@ -11,6 +11,7 @@ export class AccountService {
 
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
+  
   constructor(private http: HttpClient) {}
 
   login(model: any) {
@@ -26,7 +27,9 @@ export class AccountService {
   }
   //fetch data from the db with the model any type user + end point
   register(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+    return this.http
+    .post<User>(this.baseUrl + 'account/register', model)
+    .pipe(
       map((user) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));

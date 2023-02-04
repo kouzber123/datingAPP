@@ -16,12 +16,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.setCurrentUser();
   }
   //setting the current user local if not any then return else jsonparse
   setCurrentUser() {
-    const userString = localStorage.getItem('user');
+    const userString = localStorage.getItem("users");
     if (!userString) return;
     const user: User = JSON.parse(userString);
     this.accountService.setCurrentUser(user);
